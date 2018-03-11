@@ -44,6 +44,8 @@ const expand = R.cond([
   [R.T, R.over(nodes, addClosest)]
 ])
 
+const contract = R.over(nodes, R.dropLast(1))
+
 module.exports = {
   // constructors
   empty,
@@ -51,6 +53,7 @@ module.exports = {
 
   // operations
   expand,
+  contract,
 
   // lenses
   dimensions,

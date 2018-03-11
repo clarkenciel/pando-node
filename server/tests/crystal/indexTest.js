@@ -45,6 +45,6 @@ describe('expand', () => {
 
 describe('contract', () =>{
   it('should remove the last added node from the crystal', () =>
-    expect(C.contract(C.fromNodes([[0,0], [1,0]])).nodes)
-      .to.eql([0, 0]))
+    expect(R.view(C.nodes, C.contract(C.fromNodes([[0,0], [1,0]]))))
+      .to.eql([[0, 0]]))
 })
