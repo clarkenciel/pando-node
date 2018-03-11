@@ -21,7 +21,7 @@ describe('fromNodes', () => {
     ]))
 
   it('should set dimensionality automatically', () =>
-    expect(C.fromNodes([[0, 0, 0], [1, 0, 0]]).dimensions).to.equal(2))
+    expect(C.fromNodes([[0, 0, 0], [1, 0, 0]]).dimensions).to.equal(3))
 
   it('should build the crystal "in order" of the provided notes', () =>
     expect(R.view(C.latest, C.fromNodes([[0, 0], [1, 0]]))).to.eql([1, 0]))
