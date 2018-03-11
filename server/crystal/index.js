@@ -39,8 +39,13 @@ const addClosest = nodes => {
   return R.append(closest, nodes)
 }
 
+const isEmpty = R.compose(R.isEmpty, R.view(nodes))
+
+const addNode = R.curryN(2, (node, crystal) =>
+  R.over(nodes, R.append(node), crystal))
+
 const expand = R.cond([
-  [R.compose(R.isEmpty, R.view(nodes)), R.over(nodes, R.append([0, 0]))],
+  [isEmpty, addNode([0, 0])],
   [R.T, R.over(nodes, addClosest)]
 ])
 
@@ -54,6 +59,7 @@ module.exports = {
   // operations
   expand,
   contract,
+  isEmpty,
 
   // lenses
   dimensions,

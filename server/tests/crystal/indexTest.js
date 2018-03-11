@@ -48,3 +48,11 @@ describe('contract', () =>{
     expect(R.view(C.nodes, C.contract(C.fromNodes([[0,0], [1,0]]))))
       .to.eql([[0, 0]]))
 })
+
+describe('isEmpty', () => {
+  it('should return true with the crystal has no nodes', () =>
+    expect(C.isEmpty(C.empty())).to.be.true)
+
+  it('should return false with the crystal has no nodes', () =>
+    expect(C.isEmpty(C.fromNodes([[0,0]]))).to.be.false)
+})
