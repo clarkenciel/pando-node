@@ -26,12 +26,15 @@ const fromNodes = R.cond([
 const totalTaxi = nodes => candidate =>
   R.reduce((sum, node) => sum + taxi(node, candidate), 0, nodes)
 
+const includedIn = collection => element => R.contains(element, collection)
+
 const addClosest = nodes => {
-  const [candidate, ...candidates] = R.reject(
-    candidate => R.contains(candidate, nodes),
-    R.uniq(R.chain(cross(1), nodes))
+  const closest = R.transduce(
+    R.compose(R.chain(cross(1)), R.reject(includedIn(nodes))),
+    R.minBy(totalTaxi(nodes)),
+    R.repeat(Infinity, nodes[0].length),
+    nodes
   )
-  const closest = R.reduce(R.minBy(totalTaxi(nodes)), candidate, candidates)
 
   return R.append(closest, nodes)
 }
