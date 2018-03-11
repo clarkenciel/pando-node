@@ -26,7 +26,7 @@ const fromNodes = R.cond([
 const totalTaxi = nodes => candidate =>
   R.reduce((sum, node) => sum + taxi(node, candidate), 0, nodes)
 
-const includedIn = collection => element => R.contains(element, collection)
+const includedIn = R.flip(R.contains)
 
 const addClosest = nodes => {
   const closest = R.transduce(
